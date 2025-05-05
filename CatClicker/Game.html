@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Clicker</title>
+	<link rel="stylesheet" href="looks.css">
+</head>
+
+
+<body> 
+    <!-- navigation bar -->
+    <div class="topnav">
+        <a class="active">CAT CLICKER</a>
+        <a href="https://github.com/akkordion">GitHub</a>
+      </div>
+    </div>
+
+    <!-- whitespace between nav and clicker -->
+    <div> &nbsp; </div>
+
+    <!-- game box -->
+    <div class="row">
+        <!-- left pane: Button-Jim and Counter -->
+        <div class="column left">
+
+            <p class="counter-text" id="logic">0 POINTS</p>
+            <p class="counter-text" style="font-size:12px" id="pps">per second: 0</p>
+
+            <div class="center">
+                <img id="Cat" class="cat-button" src="images/default-render.jpg" alt="Jim Button" width="50px">
+            </div>
+
+        
+
+
+        </div>
+
+    <!-- Message boxes: regular message and achievement message. They are both initially hidden. -->
+
+        <!-- right pane: purchase buttons and message box -->
+        <div class="column right">
+            <div class="grid-container">
+                <!-- button 1: food -->
+                <div class="image-button-container">
+                    <img class="image-in-button" src="images/food.png" alt="food-img">
+                    <div class="overlay" id="Food">
+                        <div class="text-hover" id="FoodText">BOUGHT: 0<br>COST: 50</div>
+                    </div>
+                    <div id="Food-Text" class="button-text">Food</div>
+                    
+                </div>
+                
+                <!-- button 2: toy -->
+                <div class="image-button-container">
+                    <img class="image-in-button" src="images/toy.jpg" alt="toy-img">
+                    <div class="overlay" id="Toy">
+                        <div class="text-hover" id="ToyText">BOUGHT: 0<br>COST: 100 </div>
+                    </div>
+                    <div id="Toy-Text" class="button-text">Toys</div>
+                    
+                </div>
+                
+                <!-- button 3: hired help -->
+                <div class="image-button-container">
+                    <img class="image-in-button" src="images/baker.jpg" alt="hired-img">
+                    <div class="overlay" id="Hired">
+                        <div class="text-hover" id="HiredText">BOUGHT: 0<br>COST: 5000<br> </div>
+                    </div>
+                    <div id="Hire-Text" class="button-text">Hired Help</div>
+                    
+                </div>
+
+                <!-- button 4: marketable plush -->
+                <div class="image-button-container">
+                    <img class="image-in-button" src="images/plush.png" alt="food-img">
+                    <div class="overlay" id="Plush">
+                        <div class="text-hover" id="PlushText">BOUGHT: 0<br>COST: 10000<br> </div>
+                    </div>
+                    <div id="Plush-Text" class="button-text">Marketable Plush</div>
+                    
+                </div>
+
+            </div> 
+
+            <!-- whitespace between nav and clicker -->
+            <div> &nbsp; </div>
+            <div id="Achievement Box" class="achievement hidden">
+                <p></p>
+            </div>
+               
+
+            <!-- mystery events -->
+            <img id="Propeller" class="image-bonus hidden" src="images/Propeller.png" alt="Propeller">
+            <img id="Disguise" class="image-bonus hidden" src="images/Disguise.png" alt="Disguise">
+        
+        </div> <!-- column right  -->
+    
+    </div> <!-- class row -->
+
+    <script src=Logic.js></script>
+    <script src="Buttons.js"></script>
+    <script>
+        const logic = new Logic("logic", "pps", "Message Box", "Achievement Box");
+        const bigJim = new CatButton("Cat", logic);
+
+        const item1 = new ItemButton("Food", logic, 50, 1);
+        const item2 = new ItemButton("Toy", logic, 100, 3);
+
+        const upgrade1 = new UpgradeButton("Hired", logic, 5000, 2, item1);
+        const upgrade2 = new UpgradeButton("Plush", logic, 10000, 5, item2);
+
+        logic.addBonusButton(new BonusButton("Propeller", logic, 2, 10));
+        logic.addBonusButton(new BonusButton("Disguise", logic, 3, 10));
+        
+
+        
+    </script>
+      
+</body>
+</html>
